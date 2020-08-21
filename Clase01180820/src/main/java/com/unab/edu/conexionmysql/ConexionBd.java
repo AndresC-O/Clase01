@@ -20,7 +20,6 @@ public class ConexionBd {
     public ConexionBd() {
 
         try {
-
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/clase1", "root", "root");
             System.out.println("¡Conexión Establecida!");
         } catch (Exception e) {
