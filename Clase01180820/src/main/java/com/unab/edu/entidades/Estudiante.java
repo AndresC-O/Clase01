@@ -9,15 +9,11 @@ import lombok.Data;
 
 /**
  *
- * @author andre
+ * @author ANDRES CORDOVA
  */
 @Data
-public class Persona {
+public class Estudiante extends Persona {
     
-    protected int idPersona;
-    protected String Nombre;
-    protected String Apellido;
-    protected int Edad;
-    protected String Sexo;
-    
+    private int id;
+    private int matricula;
 }
