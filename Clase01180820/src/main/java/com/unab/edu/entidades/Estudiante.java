@@ -6,12 +6,14 @@
 package com.unab.edu.entidades;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
  * @author ANDRES CORDOVA
  */
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Estudiante extends Persona {
     
     private int id;
