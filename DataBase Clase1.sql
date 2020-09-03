@@ -27,3 +27,11 @@ ADD CONSTRAINT `idPersona`
   REFERENCES `clase1`.`persona` (`idPersona`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+  /*Clase 03/09/2020----------------------------------*/
+  ALTER TABLE `clase1`.`estudiante` 
+ADD COLUMN `USU` VARCHAR(45) NULL AFTER `idPersona`,
+ADD COLUMN `PASS` VARCHAR(45) NULL AFTER `USU`;
+
+ALTER TABLE `clase1`.`estudiante` 
+CHANGE COLUMN `idEstudiante` `idEstudiante` INT NOT NULL AUTO_INCREMENT ;
