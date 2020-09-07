@@ -6,9 +6,11 @@
 package com.unab.edu.DAO;
 
 import com.unab.edu.conexionmysql.ConexionBd;
+import com.unab.edu.entidades.Estudiante;
 import com.unab.edu.entidades.Persona;
 import java.sql.*;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,7 +59,7 @@ public class ClsPersona {
         }
 
     }
-    
+
     public void BorrarPersonas(Persona per) {
 
         try {
