@@ -53,13 +53,21 @@ END$$
 DELIMITER ;
 
  /*Clase 03/09/2020----------------------------------*/
- CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_S_LOGINESTUDIANTE`(pusuario varchar(50), ppass varchar(50))
+DROP procedure IF EXISTS `SP_S_LOGINESTUDIANTE`;
+DELIMITER $$
+USE `clase1`$$
+CREATE PROCEDURE `SP_S_LOGINESTUDIANTE` (pusuario varchar(50), ppass varchar(50))
 BEGIN
-	Select * from estudiante where USU = pusuario AND PSS = ppass;
-END
+	select * from estudiante where USU = pusuario AND PSS = ppass;
+END$$
+DELIMITER ;
 
+DROP procedure IF EXISTS `SP_S_INNERESTUDIANTEPERSONA`;
+DELIMITER $$
+USE `clase1`$$
 CREATE PROCEDURE `SP_S_INNERESTUDIANTEPERSONA` ()
 BEGIN
 	SELECT a.Nombre, a.Apellido, b.matricula from Persona as a
 	inner join estudiante as b on a.idPersona = b.idPersona;
-END
+END$$
+DELIMITER ;
