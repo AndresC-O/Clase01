@@ -53,12 +53,13 @@ END$$
 DELIMITER ;
 
  /*Clase 03/09/2020----------------------------------*/
+USE `clase1`;
 DROP procedure IF EXISTS `SP_S_LOGINESTUDIANTE`;
 DELIMITER $$
 USE `clase1`$$
-CREATE PROCEDURE `SP_S_LOGINESTUDIANTE` (pusuario varchar(50), ppass varchar(50))
+CREATE PROCEDURE `SP_S_LOGINESTUDIANTE`(pusuario varchar(50), ppass varchar(50))
 BEGIN
-	select * from estudiante where USU = pusuario AND PSS = ppass;
+	Select * from estudiante where USU = pusuario AND PASS = md5(ppass);
 END$$
 DELIMITER ;
 

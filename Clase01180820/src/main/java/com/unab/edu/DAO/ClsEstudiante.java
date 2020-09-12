@@ -27,6 +27,7 @@ public class ClsEstudiante {
     public boolean LoguinEstudiante(String usuario, String pass) {
 
         ArrayList<Estudiante> ListadoUSUPASS = new ArrayList<>();
+        ArrayList<Estudiante> ListarContra = new ArrayList<>();
 
         try {
             CallableStatement Statement = conectar.prepareCall("call SP_S_LOGINESTUDIANTE (?,?)");
@@ -41,18 +42,35 @@ public class ClsEstudiante {
                 ListadoUSUPASS.add(es);
             }
 
-            String usuariobasedatos = "";
-            String passbasedatos = "";
+            String usuariobasedatos = null;
+            String passbasedatos = null;
             for (var iterar : ListadoUSUPASS) {
 
                 usuariobasedatos = iterar.getUSU();
                 passbasedatos = iterar.getPASS();
             }
 
-            if (usuariobasedatos.equals(usuario) && passbasedatos.equals(pass)) {
-                return true;
+            CallableStatement st2 = conectar.prepareCall("call SP_S_CRIP(?)");
+            st2.setString("PcripPass", pass);
+            ResultSet rs2 = st2.executeQuery();
+            while (rs2.next()) {
+                Estudiante escrip = new Estudiante();
+                escrip.setPASS(rs2.getNString("crip"));
+                ListarContra.add(escrip);
             }
 
+            String passcrip = null;
+            for (var iterar : ListarContra) {
+
+                passcrip = iterar.getPASS();
+                pass = passcrip;
+            }
+
+            if (usuariobasedatos != null && passbasedatos != null) {
+                if (usuariobasedatos.equals(usuario) && passbasedatos.equals(pass)) {
+                    return true;
+                }
+            }
             conectar.close();
 
         } catch (Exception e) {

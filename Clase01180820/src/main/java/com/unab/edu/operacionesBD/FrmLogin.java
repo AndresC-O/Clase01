@@ -111,17 +111,24 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
-        ClsEstudiante est = new ClsEstudiante();
         String user = txtUsuario.getText();
         String password = txtPassword.getText();
 
-        var vContenedoraConsulta = est.LoguinEstudiante(user, password);
+        if (!user.isEmpty() && !password.isEmpty()) {
 
-        if (vContenedoraConsulta == true) {
+            ClsEstudiante est = new ClsEstudiante();
+            var vContenedoraConsulta = est.LoguinEstudiante(user, password);
 
-            JOptionPane.showMessageDialog(null, "Welcome");
-        } else {
-            JOptionPane.showMessageDialog(null, "STOP");
+            if (vContenedoraConsulta == true) {
+
+                JOptionPane.showMessageDialog(null, "Welcome");
+            } else {
+                JOptionPane.showMessageDialog(null, "Los datos ingresados no existen");
+            }
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor ingrese todos los datos correspondientes.");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
