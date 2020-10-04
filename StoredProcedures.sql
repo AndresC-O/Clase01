@@ -10,17 +10,19 @@ END$$
 DELIMITER ;
 
 /*-----------INSERT----------*/
+USE `clase1`;
 DROP procedure IF EXISTS `SP_I_Persona`;
 DELIMITER $$
 USE `clase1`$$
-CREATE PROCEDURE `SP_I_Persona` (
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_I_Persona`(
 PNombre varchar(45),
 PApellido varchar(45),
 PEdad int(11),
-PSexo varchar(45)
+PSexo varchar(45),
+PFecha date
 )
 BEGIN
-	INSERT INTO persona(Nombre, Apellido, Edad, Sexo) value (PNombre, PApellido, PEdad, PSexo);
+	INSERT INTO persona(Nombre, Apellido, Edad, Sexo, Fecha) value (PNombre, PApellido, PEdad, PSexo, PFecha);
 END$$
 DELIMITER ;
 
@@ -37,18 +39,20 @@ END$$
 DELIMITER ;
 
 /*-----------UPDATE----------*/
+USE `clase1`;
 DROP procedure IF EXISTS `SP_U_Persona`;
 DELIMITER $$
 USE `clase1`$$
-CREATE PROCEDURE `SP_U_Persona` (
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_U_Persona`(
 PIdPersona int(11),
 PNombre varchar(45),
 PApellido varchar(45),
 PEdad int(11),
-PSexo varchar(45)
+PSexo varchar(45),
+PFecha date
 )
 BEGIN
-	UPDATE persona set Nombre=PNombre, Apellido=PApellido, Edad=PEdad, Sexo=PSexo where idPersona=PIdPersona;
+	UPDATE persona set Nombre=PNombre, Apellido=PApellido, Edad=PEdad, Sexo=PSexo, Fecha=PFecha where idPersona=PIdPersona;
 END$$
 DELIMITER ;
 

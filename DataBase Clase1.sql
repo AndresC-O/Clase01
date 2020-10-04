@@ -11,6 +11,9 @@ CREATE TABLE `clase1`.`persona` (
   
   INSERT INTO `clase1`.`persona` (`Nombre`, `Apellido`, `Edad`, `Sexo`) VALUES ('Andres', 'Cordova', '19', 'M');
   
+  ALTER TABLE `clase1`.`persona` 
+ADD COLUMN `Fecha` DATE NULL AFTER `Sexo`;
+  
   /*Clase 27/08/2020----------------------------------*/
   CREATE TABLE `clase1`.`estudiante` (
   `idEstudiante` INT NOT NULL,
