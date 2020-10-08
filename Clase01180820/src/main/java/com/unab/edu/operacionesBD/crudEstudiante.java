@@ -30,19 +30,21 @@ public class crudEstudiante extends javax.swing.JFrame {
         MostrarTablaJOIN();
         MostrarTablaPersona();
         DisplayMember();
+
     }
 
     String valueMember[];
-    int contador = 0;
-    public void DisplayMember(){
-        
+    int contador = 1;
+
+    public void DisplayMember() {
+
         DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
         ClsPersona clsPersona = new ClsPersona();
         ArrayList<Persona> personas = clsPersona.MostrarPersona();
-        valueMember = new String[personas.size()];
-        
-        String Filas[] = new String[5];
+        valueMember = new String[personas.size() + 1];
 
+        String Filas[] = new String[5];
+        cbdefault.addElement("");
         for (var iterar : personas) {
 
             Filas[0] = String.valueOf(iterar.getIdPersona());
@@ -51,15 +53,15 @@ public class crudEstudiante extends javax.swing.JFrame {
             cbdefault.addElement(Filas[1]);
             contador++;
         }
-        
+
         cbPersonas.setModel(cbdefault);
     }
-    
+
     public void VaciarBox() {
 
         txtIdEstudiante.setText("");
         txtMatricula.setText("");
-        //txtIdPersona.setText("");
+        cbPersonas.setSelectedIndex(0);
         txtUsuario.setText("");
         txtPassword.setText("");
         txtNIE.setText("");
@@ -347,6 +349,15 @@ public class crudEstudiante extends javax.swing.JFrame {
         txtUsuario.setText(Usuario);
         txtPassword.setText(Contrasenia);
         txtNIE.setText(Nie);
+
+        int seleccionadorDeVista = 0;
+        for (var iterar : valueMember) {
+            if (IdPersona.equals(iterar)) {
+                cbPersonas.setSelectedIndex(seleccionadorDeVista);
+            }
+
+            seleccionadorDeVista += 1;
+        }
     }//GEN-LAST:event_tb_EstudianteMouseClicked
 
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
@@ -371,11 +382,7 @@ public class crudEstudiante extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        if (txtIdEstudiante.getText().isEmpty() || txtMatricula.getText().isEmpty() || txtUsuario.getText().isEmpty()
-            || txtPassword.getText().isEmpty() || txtNIE.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "¡Complete todos los campos para continuar!");
-        } else {
+        try {
             ClsEstudiante estudiantes = new ClsEstudiante();
             Estudiante estudiante = new Estudiante();
 
@@ -387,17 +394,16 @@ public class crudEstudiante extends javax.swing.JFrame {
             estudiante.setNIE(Integer.parseInt(txtNIE.getText()));
             estudiantes.ActualizarEstudiante(estudiante);
             VaciarBox();
-            MostrarTablaJOIN();
+        MostrarTablaJOIN();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "¡Verifica que todos los campos estén llenos!");
         }
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        if (txtMatricula.getText().isEmpty()|| txtUsuario.getText().isEmpty()
-            || txtPassword.getText().isEmpty() || txtNIE.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(null, "¡Complete todos los campos para continuar!");
-        } else {
+        try {
             ClsEstudiante estudiantes = new ClsEstudiante();
             Estudiante estudiante = new Estudiante();
 
@@ -410,6 +416,8 @@ public class crudEstudiante extends javax.swing.JFrame {
             estudiantes.AgregarEstudiante(estudiante);
             VaciarBox();
             MostrarTablaJOIN();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "¡Verifica que todos los campos estén llenos!");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
