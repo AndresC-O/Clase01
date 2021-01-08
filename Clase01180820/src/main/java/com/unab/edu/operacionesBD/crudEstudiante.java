@@ -9,7 +9,6 @@ import com.unab.edu.DAO.ClsEstudiante;
 import com.unab.edu.DAO.ClsPersona;
 import com.unab.edu.entidades.Estudiante;
 import com.unab.edu.entidades.Persona;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -87,6 +86,7 @@ public class crudEstudiante extends javax.swing.JFrame {
             ModeloTabla.addRow(filas);
         }
 
+        
         tb_Estudiante.setModel(ModeloTabla);
     }
 
@@ -355,7 +355,6 @@ public class crudEstudiante extends javax.swing.JFrame {
             if (IdPersona.equals(iterar)) {
                 cbPersonas.setSelectedIndex(seleccionadorDeVista);
             }
-
             seleccionadorDeVista += 1;
         }
     }//GEN-LAST:event_tb_EstudianteMouseClicked
